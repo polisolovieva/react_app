@@ -14,4 +14,4 @@ export const users = [
         age:66,
         country: 'Japan',
     },
-];
+]

@@ -1,13 +1,13 @@
-import UserList from "./UserList";
+import UserList from "./Pages/UserList";
 import {users} from "../users";
-import UserAdd from "./UserAdd";
+import UserAdd from "./Pages/UserAdd";
+import Users from "./Pages/Users";
 
 const App = () => {
 
     return (
           <div className="App">
-                <UserList users = {users}/>
-                <UserAdd/>
+               <Users />
           </div>
     );
 }
