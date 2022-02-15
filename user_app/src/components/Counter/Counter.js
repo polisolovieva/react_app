@@ -11,8 +11,8 @@ const Counter = () => {
     return (
         <div>
             <h3>Current count: {count}</h3>
-            <button onClick={inc}>+</button>
-            <button onClick={dec}>-</button>
+            <button className="w-25 m-2 btn btn-success" onClick={inc}>+</button>
+            <button className="w-25 m-2 btn btn-success" onClick={dec}>-</button>
         </div>
     );
 };
