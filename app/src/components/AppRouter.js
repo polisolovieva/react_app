@@ -3,14 +3,15 @@ import {Routes, Route} from "react-router-dom";
 import App from "../App";
 import Users from "../pages/Users/Users";
 import Counter from "./Counter/Counter";
+import Posts from "./Posts/Posts";
 
 
 const AppRouter = () => {
     return (
             <Routes>
-                <Route path='/' element={<Users/>}/>
                 <Route path='/users' element={<Users/>}/>
                 <Route path='/counter' element={<Counter/>}/>
+                <Route path='/posts' element={<Posts/>}/>
             </Routes>
 
     );
