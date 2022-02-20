@@ -3,7 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import App from "../App";
 import Users from "../pages/Users/Users";
 import Counter from "./Counter/Counter";
-import Posts from "./Posts/Posts";
+import Posts from "../pages/Posts/Posts";
 
 
 const AppRouter = () => {

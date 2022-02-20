@@ -18,6 +18,7 @@ const UserAdd = ({users, setUsers}) => {
     }
 
     const [values, setValues] = useState({
+        id: Date.now(),
         name:'',
         age: '',
         country:'',
@@ -26,6 +27,10 @@ const UserAdd = ({users, setUsers}) => {
     return (
         <>
             {Object.keys(values).map((value,index) => {
+
+                if(value === 'id'){
+                    return false
+                }
                 if(value === 'age'){
                     return <input
                         className="m-2"
@@ -38,7 +43,6 @@ const UserAdd = ({users, setUsers}) => {
                     />
                 }
                 return <input
-                    className="m-2"
                     id={value}
                     key={index}
                     value={values[value]}
