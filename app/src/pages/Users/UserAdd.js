@@ -9,8 +9,10 @@ const UserAdd = ({users, setUsers}) => {
     }
 
     const addUser = () => {
-        setUsers([...users, values]);
+        setUsers([...users, values])
+        console.log(values.id)
         setValues({
+            id: Date.now(),
             name:'',
             age: '',
             country:'',

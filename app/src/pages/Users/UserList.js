@@ -5,6 +5,7 @@ const UserList = ({users, setUsers, sortedAndSearchedUsers}) => {
     const deletePost = (id) => {
         const confirm = window.confirm("Do you really want to delete it?")
         if (confirm) {
+            console.log(id)
             setUsers(users.filter((user) => user.id !== id))
         }
     }

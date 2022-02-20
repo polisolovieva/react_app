@@ -33,7 +33,7 @@ const Users = () => {
         if (sorter) {
             return [...users].sort((a, b) => b.age - a.age)
         }
-        return users
+        return [...users].sort((a, b) => a.age - b.age)
     }, [sorter, users])
 
     const sortedAndSearchedUsers = useMemo(() => {
