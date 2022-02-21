@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import "./users.css"
 
-const UserAdd = ({users, setUsers}) => {
+const UserAdd = ({users, setUsers, closeModal}) => {
 
     const onChange = (e) => {
         const field = e.target.id;
@@ -17,6 +17,7 @@ const UserAdd = ({users, setUsers}) => {
             age: '',
             country:'',
         })
+        closeModal()
     }
 
     const [values, setValues] = useState({

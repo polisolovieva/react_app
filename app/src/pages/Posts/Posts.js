@@ -1,7 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import "./posts.css"
+import MyModal from "../../components/MyModal/MyModal";
 
 const Posts = () => {
+    const [currentPost, setCurrentPost] = useState(null)
+    const [showModal, setShowModal] = useState(false)
     const [sorter, setSorter] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
     const [usersPosts, setUsersPosts] = useState([
@@ -41,14 +44,15 @@ const Posts = () => {
             "title": "dolorem eum magni eos aperiam quia",
             "body": "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae"
         }])
-
-    const deletePost = (id) => {
-        const confirm = window.confirm("Do you really want to delete it?")
-        if (confirm) {
-            setUsersPosts(usersPosts.filter((post) => post.id !== id))
-        }
+    const confirmDeletePost = (post) => {
+      setCurrentPost(post);
+      setShowModal(true);
     }
 
+    const deletePost = () =>{
+        setUsersPosts(usersPosts.filter((post) => post.id !== currentPost.id));
+        setShowModal(false);
+    }
     const onSearch = (e) => {
         setSearchQuery(e.target.value)
     }
@@ -89,16 +93,26 @@ const Posts = () => {
                 <option value="1">from Max to Min</option>
             </select>
             <div className="posts-container mt-3">
-                {sortedAndSearchedPosts.map((post, id) =>
+                {sortedAndSearchedPosts.length
+                    ? sortedAndSearchedPosts.map((post, id) =>
                         <div className="card" key={post.id}>
                             <div className="card-body">
                                 <h5 className="card-title">{post.id}. {post.title}</h5>
                                 <p className="card-text">{post.body}</p>
-                                <button onClick={() => deletePost(post.id)} className="btn btn-primary">Delete</button>
+                                <button onClick={() => confirmDeletePost(post)} className="btn btn-primary">Delete</button>
                             </div>
                         </div>
-                )}
+                    )
+                    : <h3 className="mt-4">Posts not found</h3>}
             </div>
+            <MyModal
+                visible={showModal}
+                onCancel={()=> setShowModal(false)}
+                closeButtonShow
+                saveButtonShow
+                onConfirm={() => deletePost()}
+
+            ><h4>Do you really delete this post?</h4></MyModal>
         </div>
     );
 };

@@ -3,8 +3,10 @@ import UserList from "./UserList";
 import UserAdd from "./UserAdd";
 import "./users.css"
 import UserSortAndSearch from "./UserSortAndSearch";
+import MyModal from "../../components/MyModal/MyModal";
 
 const Users = () => {
+    const [showModal, setShowModal] = useState(false)
     const [users, setUsers] = useState([
         {
             id:1,
@@ -42,7 +44,19 @@ const Users = () => {
 
     return (
         <div className="container">
-            <UserAdd users = {users} setUsers = {setUsers}/>
+            <button
+                className="btn btn-primary mt-3"
+                onClick={() => setShowModal(true)}
+                >Add User</button>
+            <MyModal
+                visible={showModal}
+                onCancel={()=> setShowModal(false)}
+                closeButtonShow
+
+            >
+                <UserAdd users = {users} setUsers = {setUsers} closeModal={() => setShowModal(false)}/>
+            </MyModal>
+
             <UserSortAndSearch setSorter={setSorter} setSearchQuery={setSearchQuery}/>
             <UserList users={users} setUsers = {setUsers} sortedAndSearchedUsers={sortedAndSearchedUsers}/>
         </div>
