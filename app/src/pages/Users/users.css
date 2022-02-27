@@ -5,6 +5,7 @@
     border-bottom: 1px solid black;
 }
 input{
+    width: 100%;
     padding:10px;
     margin: 0px 10px;
     border: 2px solid #eee;

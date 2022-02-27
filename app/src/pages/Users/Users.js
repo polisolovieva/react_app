@@ -7,35 +7,18 @@ import MyModal from "../../components/MyModal/MyModal";
 
 const Users = () => {
     const [showModal, setShowModal] = useState(false)
-    const [users, setUsers] = useState([
-        {
-            id:1,
-            name:'Franko',
-            age:32,
-            country: 'USA',
-        },
-        {
-            id:2,
-            name:'Stefano',
-            age:25,
-            country: 'Italy',
-        },
-        {
-            id:3,
-            name:'Macumoto',
-            age:66,
-            country: 'Japan',
-        },
-    ])
+    const [users, setUsers] = useState([])
 
     const [sorter, setSorter] = useState(0);
     const [searchQuery, setSearchQuery] = useState('');
 
     const sortedUsers = useMemo(() => {
-        if (sorter) {
-            return [...users].sort((a, b) => b.age - a.age)
+        if (sorter === 2) {
+            return [...users].sort((a, b) => b.id - a.id)
+        } else if (sorter === 1) {
+            return [...users].sort((a, b) => a.id - b.id)
         }
-        return [...users].sort((a, b) => a.age - b.age)
+        return users
     }, [sorter, users])
 
     const sortedAndSearchedUsers = useMemo(() => {

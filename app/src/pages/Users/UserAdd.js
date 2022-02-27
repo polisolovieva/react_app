@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import "./users.css"
+import Crud from "../../services/crud.service";
 
 const UserAdd = ({users, setUsers, closeModal}) => {
+    const usersCrud = new Crud('users');
 
     const onChange = (e) => {
         const field = e.target.id;
@@ -9,22 +11,33 @@ const UserAdd = ({users, setUsers, closeModal}) => {
     }
 
     const addUser = () => {
-        setUsers([...users, values])
-        console.log(values.id)
-        setValues({
-            id: Date.now(),
-            name:'',
-            age: '',
-            country:'',
-        })
-        closeModal()
+        usersCrud.create(values).then((res)=>{
+            setUsers([...users, values])
+            setValues({
+                id: Date.now(),
+                name:'',
+                email:'',
+                username: '',
+            })
+            // setShowModal(false);
+            closeModal()
+        }).catch((err) => console.log(err))
+        // setUsers([...users, values])
+        // console.log(values.id)
+        // setValues({
+        //     id: Date.now(),
+        //     name:'',
+        //     age: '',
+        //     country:'',
+        // })
+        // closeModal()
     }
 
     const [values, setValues] = useState({
         id: Date.now(),
         name:'',
-        age: '',
-        country:'',
+        email:'',
+        username: '',
     });
 
     return (
@@ -34,13 +47,13 @@ const UserAdd = ({users, setUsers, closeModal}) => {
                 if(value === 'id'){
                     return false
                 }
-                if(value === 'age'){
+                if(value === 'email'){
                     return <input
-                        className="m-2"
+                        className="mt-2 mb-2"
                         id={value}
                         key={index}
                         value={values[value]}
-                        type = "number"
+                        type = "email"
                         placeholder={`Input user ${value}`}
                         onChange={onChange}
                     />

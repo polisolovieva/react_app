@@ -27,9 +27,9 @@ const UserSortAndSearch = ({setSearchQuery,setSorter}) => {
                     aria-label="Default select example"
                     onChange={onSort}
             >
-                <option defaultValue disabled> Sort age </option>
-                <option value="0">from Min to Max</option>
-                <option value="1">from Max to Min</option>
+                <option defaultValue value="0"> Sort id </option>
+                <option value="1">from Min to Max</option>
+                <option value="2">from Max to Min</option>
             </select>
             
         </div>
