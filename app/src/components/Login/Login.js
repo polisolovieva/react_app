@@ -1,10 +1,11 @@
 import React, {useContext, useState} from 'react';
 import Crud from "../../services/crud.service";
 import AuthContext from "../../context/context";
+import http from "../../http"
 
 const Login = () => {
     const { auth, setAuth } = useContext(AuthContext)
-    const [values, setValues] = useState({login:"", password:""})
+    const [values, setValues] = useState({username:"", password:""})
     const [login,setLogin] = useState(false)
 
     const onChange = (e) => {
@@ -12,21 +13,24 @@ const Login = () => {
         setValues({...values,[field]: e.target.value})
     }
 
-    const loginUser = () => {
-
+    const loginUser = (e) => {
+        e.preventDefault();
+        http.post('https://fakestoreapi.com/auth/login',values).then((res)=>{
+            setAuth(true)
+            console.log(res.data);
+        }).catch((e) => console.log(e));
     }
 
     return (
         <form className="container mt-3 col-4">
             <div className="mb-3">
-                <label htmlFor="login" className="form-label">Email address</label>
-                <input type="email"
+                <label htmlFor="username" className="form-label">Email address</label>
+                <input type="text"
                        className="form-control"
-                       id="login"
+                       id="username"
                        aria-describedby="emailHelp"
                        onChange={onChange}
                 />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
@@ -44,7 +48,7 @@ const Login = () => {
                 />
                     <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={loginUser}>Submit</button>
+            <button className="btn btn-primary" onClick={loginUser}>Submit</button>
         </form>
     );
 };
