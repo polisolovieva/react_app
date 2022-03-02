@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import "./users.css"
 import {Link} from "react-router-dom";
 import Crud from "../../services/crud.service";
 import MyModal from "../../components/MyModal/MyModal";
+import AuthContext from "../../context/context";
 
 const UserList = ({users, setUsers, sortedAndSearchedUsers}) => {
     const usersCrud = new Crud('users');
     const [showModal, setShowModal] = useState(false)
     const [currentPost, setCurrentPost] = useState(null)
-
 
     useEffect(() => {
         fetchAllUsers();

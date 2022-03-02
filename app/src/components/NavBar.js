@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from "react-router-dom";
+import AuthContext from "../context/context";
 
 const NavBar = () => {
     const [menuActive, setMenuActive] = useState( false);
+    const {auth,setAuth} = useContext(AuthContext);
     const links = [
         {
             name: 'Home',
@@ -55,6 +57,9 @@ const NavBar = () => {
 
                     </ul>
                 </div>
+                {auth ?
+                    <button className="btn btn-outline-secondary" onClick={()=>setAuth(false)}>Log Out</button>
+                    : ""}
             </div>
         </nav>
     );
